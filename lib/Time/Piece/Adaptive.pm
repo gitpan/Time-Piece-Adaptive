@@ -7,11 +7,11 @@ no warnings 'redefine';
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 =head1 NAME
 
@@ -189,7 +189,7 @@ If C<$format> is a string, use it to format an output string using
 C<strftime> (any C<$arg> is ignored).
 
 When called without specifying C<$format>, restore the default stringifier
-(&Time::Piece::cdate).
+(C<&Time::Piece::cdate>).
 
 =cut
 
@@ -306,6 +306,14 @@ sub strptime
     return $self;
 }
 
+=head1 SEE ALSO
+
+=over 4
+
+=item L<Time::Piece>
+
+=back
+
 =head1 AUTHOR
 
 Derek Price, C<< <derek at ximbiot.com> >>
@@ -313,7 +321,7 @@ Derek Price, C<< <derek at ximbiot.com> >>
 =head1 BUGS
 
 Please report any bugs or feature requests to
-C<bug-cgi-wiki-store-mediawiki at rt.cpan.org>, or through the web interface at
+C<time-piece-adaptive at rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Time-Piece-Adaptive>.
 I will be notified, and then you'll automatically be notified of progress on
 your bug as I make changes.
