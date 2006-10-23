@@ -7,11 +7,11 @@ no warnings 'redefine';
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =cut
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 =head1 NAME
 
@@ -129,7 +129,11 @@ The above examples are semanticly equivalent to:
 
 sub new
 {
-    my ($class, $time, %args) = @_;
+    my $class = shift;
+    my $time = shift
+	unless $_[0] && ($_[0] eq "stringify" || $_[0] eq "stringify_arg");
+    my %args = @_;
+
     my $self = $class->SUPER::new ($time);
     my $stringify = $args{stringify} if exists $args{stringify};
     my $stringify_args = $args{stringify_args} if exists $args{stringify_args};
@@ -151,7 +155,8 @@ stringify arguments, as C<new>.
 sub localtime {
     unshift @_, __PACKAGE__ unless eval {$_[0]->isa ('Time::Piece')};
     my $class = shift;
-    my $time  = shift;
+    my $time  = shift
+	unless $_[0] && ($_[0] eq "stringify" || $_[0] eq "stringify_arg");
     $time = time unless defined $time;
     return $class->_mktime ($time, 1, @_);
 }
@@ -159,7 +164,8 @@ sub localtime {
 sub gmtime {
     unshift @_, __PACKAGE__ unless eval {$_[0]->isa ('Time::Piece')};
     my $class = shift;
-    my $time  = shift;
+    my $time  = shift
+	unless $_[0] && ($_[0] eq "stringify" || $_[0] eq "stringify_arg");
     $time = time unless defined $time;
     return $class->_mktime ($time, 0, @_);
 }
@@ -234,7 +240,7 @@ sub set_stringify
 
 =head2 subtract
 
-Like the Time::Piece functions of the same name, except C<stringify_func> and
+Like the Time::Piece functions of the same name, except C<stringify> and
 C<stringify_arg> arguments are accepted.
 
 Also, when a Time::Piece::Adaptive object is subtracted from an arbitrary

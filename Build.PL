@@ -6,6 +6,7 @@ my $builder = Module::Build->new(
     module_name         => 'Time::Piece::Adaptive',
     license             => 'perl',
     dist_author         => 'Derek Price <derek@ximbiot.com>',
+    sign		=> 1,
     dist_version_from   => 'lib/Time/Piece/Adaptive.pm',
     requires => {
 	'Time::Piece' => 0,
